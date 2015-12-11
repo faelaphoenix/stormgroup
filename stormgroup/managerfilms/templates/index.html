@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Manager Films</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/managerfilms.css' %}">
+    </head>
+    <body>
+       <div class="container">
+
+        <div class="page-header">
+            <a class="btn btn-primary pull-right" href="{% url 'movie_add' %}"><i class="glyphicon glyphicon-plus"></i> Adicionar filme</a>
+        </div>
+
+	{% extends "menu.html" %}
+    {% block content %}
+    {% endblock %}
+
+
+</div>
+</body>
+</html>

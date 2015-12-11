@@ -1,0 +1,73 @@
+{% load staticfiles %}
+   {% include "menu.html" %}
+       {% block content %}
+        <main id="Content" class="fix">
+            <header class="fix">
+                <h1>{{movie.movie}}</h1>
+            </header>
+            
+            <section id="Infos" class='fix'>
+                <figure class="fl"><img src="{{ MEDIA_URL }}{{movie.photo.url}}"></figure>
+            
+                <article class="fl">
+                    <p class="tit">Sinopse:</p>
+                    <p class="txt">{{movie.synopsis}}</p>
+                    <p class="tit">Genero:</p>
+                    <p class="txt">
+                        {% for genre in genre_list %}
+
+                            {% if forloop.last and not forloop.first %} 
+                                e 
+                            {% else%} 
+
+                                {% if not forloop.first %} 
+                                    , 
+                                {% endif%} 
+
+                            {% endif%}
+                            <a href="../genre_list/?id={{genre.id}}">{{genre.genre}}</a>   
+
+                        {% endfor %}
+                    </p>     
+
+                    <p class="tit">Atores:</p>
+                    <p class="txt">
+                        {% for cast in cast_list %}
+
+                            {% if forloop.last and not forloop.first %} 
+                                e 
+                            {% else %} 
+
+                                {% if not forloop.first %} 
+                                    , 
+                                {% endif%} 
+
+                            {% endif%}
+                            
+                            <a href="../cast_list/?id={{cast.id}}">{{cast.cast}}</a>   
+                              
+                        {% endfor %}
+                    </p>
+                </article>
+
+            </section>
+
+            <section id="listagem" class='fix'>
+                <header class="fix">
+                    <h2>Filmes Relacionados</h2>
+                </header>
+                <ul>
+                    {% for movie in movie_list %}
+
+                        <li class="fl {% if forloop.counter|divisibleby:5 %}last{% endif %}">
+                            
+                            <a href="/movie_detail/?id={{movie.id}}">
+                                <img src="{{ MEDIA_URL }}{{movie.photo.url}}" alt="" >
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+
+    </main>
+{% endblock content %}

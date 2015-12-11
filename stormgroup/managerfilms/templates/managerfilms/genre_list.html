@@ -1,0 +1,35 @@
+
+{% extends "index.html" %}
+
+{% block content %}
+
+<header>
+		<div>
+			<a href="../" class="home" title="voltar para home"></a>
+		</div>
+	</header>
+	<main>
+		<header>
+			<h1>{{genre}}</h1>
+			<form>
+				<select name="order" id="order_genre">
+					<option value="0">Ordenar por:</option>
+					<option value="asc">a - z</option>
+					<option value="desc">z - a</option>
+				</select>
+			</form>
+		</header>
+		
+		<section>
+			<ul>
+				{% for movie in movies %}
+					<li class="fl {% if forloop.counter|divisibleby:5 %}last{% endif %}">	
+						<a href="../movie_detail/?id={{movie.id}}">
+							<img src="{{ MEDIA_URL }}{{movie.photo.url}}">
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</section>
+	</main>
+{% endblock content %}

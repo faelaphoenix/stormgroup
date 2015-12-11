@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Manager Films</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/managerfilms.css">
+    </head>
+    <body>
+       <div class="container">
+
+{% block content %}
+
+<div class="container">
+
+    <div class="page-header">
+        <a class="btn btn-primary pull-right" href="{% url 'movie_add' %}"><i class="glyphicon glyphicon-plus"></i> Adicionar filme</a>
+    </div>
+
+    {% if movies %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Listagem de Filmes</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for movie in movies %}
+                <tr>
+                    <td><a href="{{ movie.get_absolute_url }}">{{ movie.movie }}</a></td>
+                    <td>{{ movie.genre_list }}</td>
+                    <td>{{ movie.cast_list }}</td>
+                    {% for movie in movies %}
+                        <tr>
+                            <td><img src="{{ movie.poster }}"></td>
+                        </tr>
+                    {% endfor %}
+                  </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="alert alert-warning">Sem itens na lista.</p>
+    {% endif %}
+</div>
+
+{% endblock content %}

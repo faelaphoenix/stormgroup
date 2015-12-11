@@ -1,0 +1,38 @@
+   {% extends "base.html" %}
+
+    {% block content %}
+    <main>
+        <header>
+            <h1>Atores</h1>
+        </header>
+        
+        <section>
+            <figure><img src="{{ MEDIA_URL }}{{cast.photo.url}}"></figure>
+
+            <article>
+                <p>Ator</p>
+                <h2>{{cast.cast}}</h2>
+                <p><strong>País:</strong> {{cast.country}}</p>
+                
+            </article>
+
+        </section>
+
+        <section>
+            <header>
+                <h2>Filmes Relacionados</h2>
+            </header>
+            <ul>
+                {% for movie in movies %}
+                    <li class="fl">
+                        
+                        <a href="../movie_list/?id={{movie.id}}">
+                            <img src="{{ MEDIA_URL }}{{movie.photo.url}}">
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+    </main>
+    {% endblock content %}
